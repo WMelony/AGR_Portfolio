@@ -30,9 +30,11 @@ if (window.innerWidth > 768) {
 
             // Parallax effect for shapes
             shapes.forEach((shape, index) => {
-                const speed = 0.1 + (index % 3) * 0.05; // Different speeds for different shapes
-                const yOffset = args.scroll.y * speed;
-                shape.style.transform = `translateY(${yOffset}px)`;
+                if (shape && shape.style) {
+                    const speed = 0.1 + (index % 3) * 0.05; // Different speeds for different shapes
+                    const yOffset = args.scroll.y * speed;
+                    shape.style.transform = `translateY(${yOffset}px)`;
+                }
             });
         });
     }
@@ -166,23 +168,25 @@ workCards.forEach(card => {
 const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
 
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navLinks.classList.toggle('active');
-});
-
-// Close menu when clicking outside
-document.addEventListener('click', (e) => {
-    if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
-        hamburger.classList.remove('active');
-        navLinks.classList.remove('active');
-    }
-});
-
-// Close menu when clicking a link
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navLinks.classList.remove('active');
+if (hamburger && navLinks) {
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('active');
     });
-}); 
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+        }
+    });
+
+    // Close menu when clicking a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+        });
+    });
+} 
