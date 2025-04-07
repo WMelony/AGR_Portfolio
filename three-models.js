@@ -733,7 +733,7 @@ function loadModel(containerId, modelType) {
                 // Adjust vertical position based on model type
                 if (containerId.includes('character')) {
                     // Keep character model lower
-                    models[containerId].position.y = -1.5;
+                    models[containerId].position.y = -100;
                 } else if (containerId.includes('environment')) {
                     // Keep environment model lower
                     models[containerId].position.y = -1.5;
@@ -749,7 +749,7 @@ function loadModel(containerId, modelType) {
                 // Different scaling factors based on model type
                 let scale;
                 if (containerId.includes('character')) {
-                    scale = 5 / maxDim; // Keep character the same
+                    scale = 7    / maxDim; // Keep character the same
                 } else if (containerId.includes('environment')) {
                     scale = 7 / maxDim; // Increased from 4 to 7 for environment (+3)
                 } else {
